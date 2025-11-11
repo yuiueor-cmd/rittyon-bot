@@ -12,7 +12,9 @@ def home():
     return "Bot is alive!"
 
 def run_flask():
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))  # ← Renderが指定するポートを取得
+    app.run(host='0.0.0.0', port=port)         # ← ここで環境変数に合わせる！
+
 
 # Flaskをバックグラウンドで起動
 threading.Thread(target=run_flask).start()
