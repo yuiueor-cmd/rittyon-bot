@@ -2,6 +2,20 @@ import discord
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
+
+# Flaskをバックグラウンドで起動
+threading.Thread(target=run_flask).start()
 load_dotenv()
 intents = discord.Intents.default()
 intents.members = True
