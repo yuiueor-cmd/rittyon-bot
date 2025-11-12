@@ -16,6 +16,7 @@ def run_flask():
     app.run(host='0.0.0.0', port=port)         # ← ここで環境変数に合わせる！
 
 
+
 # Flaskをバックグラウンドで起動
 threading.Thread(target=run_flask).start()
 load_dotenv()
@@ -69,5 +70,7 @@ async def on_member_join(member):
         )
     else:
         await channel.send("⚠ 一般チャンネルが見つかりませんでした。管理者にご確認ください。")
-
+@bot.command(name="完了")
+async def kanryou(ctx):
+    await ctx.send("✅ OKうみちゃん、こちらが招待LINKだ。：\nhttps://discord.gg/gBpTfesX")
 bot.run(os.getenv("DISCORD_TOKEN"))
